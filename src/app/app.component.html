@@ -1,0 +1,42 @@
+
+  <h2 id="mydesc">Propuesta</h2>
+  <table class="styled-table" aria-describedby="mydesc">
+
+    <thead>
+      <tr>
+
+        <th>Descripción</th>
+        <th>Precio</th>
+        <th>Activo</th>
+        <th>Realizable por nosotros?</th>
+
+      </tr>
+
+
+    </thead>
+    <tbody>
+      <tr *ngFor="let propuesta of propuesta">
+
+        <td>
+          <details>
+            <summary>
+              {{propuesta.name}}
+
+            </summary>
+            <p class="description">{{propuesta.description}}</p>
+
+          </details>
+        </td>
+        <td>{{propuesta.price | currency: 'COP '}}</td>
+        <td><input type="checkbox" [checked]="propuesta.activo" (change)="toggleActivo(propuesta)"></td>
+        <td [ngStyle]="{'background-color': propuesta.realizable === 'Si' ? 'green' : 'red'}">{{propuesta.realizable}}</td>
+
+
+      </tr>
+      <tr>
+        <td colspan="4">Total: {{total | currency: 'COP '}}</td>
+      </tr>
+
+    </tbody>
+
+  </table>
